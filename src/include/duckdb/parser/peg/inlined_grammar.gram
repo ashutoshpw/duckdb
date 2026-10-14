@@ -247,7 +247,6 @@ ColumnNameKeyword <- 'BETWEEN' /
 'XMLSERIALIZE' /
 'XMLTABLE'
 FuncNameKeyword <- 'ASOF' /
-'AT' /
 'AUTHORIZATION' /
 'BINARY' /
 'COLLATION' /
@@ -352,7 +351,6 @@ ReservedKeyword <- 'ALL' /
 'WINDOW' /
 'WITH'
 TypeNameKeyword <- 'ASOF' /
-'AT' /
 'AUTHORIZATION' /
 'BINARY' /
 'BY' /
@@ -397,6 +395,7 @@ UnreservedKeyword <- 'ABORT' /
 'APPROX' /
 'ASSERTION' /
 'ASSIGNMENT' /
+'AT' /
 'ATTACH' /
 'ATTRIBUTE' /
 'BACKWARD' /
@@ -1831,7 +1830,8 @@ NamedParameterAssignment <- ':=' / '=>'
 
 TableAlias <- TableAliasAs / TableAliasWithoutAs
 TableAliasAs <- 'AS' IdentifierOrStringLiteral ColumnAliases?
-TableAliasWithoutAs <- Identifier ColumnAliases?
+NotAtClause <- AtClause
+TableAliasWithoutAs <- NotAtClause Identifier ColumnAliases?
 
 AtClause <- 'AT' Parens(AtSpecifier)
 AtSpecifier <- AtUnit '=>' Expression

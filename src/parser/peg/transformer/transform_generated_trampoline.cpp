@@ -22381,7 +22381,7 @@ void PEGTransformerFactory::InitializeTableAliasWithoutAsTrampoline(PEGTransform
                                                                     GeneratedTransformProcess &process) {
 	auto &list_pr = process.parse_result.Cast<ListParseResult>();
 	process.ReserveChildSlots(1);
-	auto &column_aliases_opt = list_pr.GetChild(1).Cast<OptionalParseResult>();
+	auto &column_aliases_opt = list_pr.GetChild(2).Cast<OptionalParseResult>();
 	if (column_aliases_opt.HasResult()) {
 		process.PushChild({transformer.GetRule("ColumnAliases"), column_aliases_opt.GetResult()}, 0);
 	}
@@ -22391,7 +22391,7 @@ arena_ptr<TransformResultValue>
 PEGTransformerFactory::FinalizeTableAliasWithoutAsTrampoline(PEGTransformer &transformer,
                                                              GeneratedTransformProcess &process) {
 	auto &list_pr = process.parse_result.Cast<ListParseResult>();
-	auto identifier = list_pr.GetChild(0).Cast<IdentifierParseResult>().identifier;
+	auto identifier = list_pr.GetChild(1).Cast<IdentifierParseResult>().identifier;
 	optional<vector<string>> column_aliases {};
 	if (process.child_results[0]) {
 		column_aliases = process.TakeResult<vector<string>>(0);

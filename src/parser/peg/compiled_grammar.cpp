@@ -105,6 +105,7 @@ terminal_rule_overrides_t ParsedGrammar::BuildTerminalRuleOverrides(const PEGKey
 	//===--------------------------------------------------------------------===//
 
 	AddTerminalRuleOverride(overrides, "EndOfInput", make_uniq<EndOfInputMatcher>());
+	AddTerminalRuleOverride(overrides, "NotAtClause", make_uniq<NotAtClauseMatcher>());
 	for (auto &callback : terminal_rule_override_callbacks) {
 		callback(keyword_helper, overrides);
 	}
