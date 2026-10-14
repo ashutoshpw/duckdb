@@ -38,6 +38,9 @@ static bool AssertInternalType(duckdb_logical_type type, duckdb::PhysicalType ph
 }
 
 duckdb_logical_type duckdb_create_logical_type(duckdb_type type) {
+	if (type == DUCKDB_TYPE_VARIANT) {
+		return reinterpret_cast<duckdb_logical_type>(new duckdb::LogicalType(duckdb::LogicalType::VARIANT()));
+	}
 	if (type == DUCKDB_TYPE_DECIMAL || type == DUCKDB_TYPE_ENUM || type == DUCKDB_TYPE_LIST ||
 	    type == DUCKDB_TYPE_STRUCT || type == DUCKDB_TYPE_MAP || type == DUCKDB_TYPE_ARRAY ||
 	    type == DUCKDB_TYPE_UNION) {
