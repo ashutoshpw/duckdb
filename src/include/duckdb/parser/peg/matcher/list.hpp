@@ -5,6 +5,7 @@
 #include "duckdb/parser/peg/matcher/keyword_matcher.hpp"
 #include "duckdb/parser/peg/matcher/list_matcher.hpp"
 #include "duckdb/parser/peg/matcher/number_literal_matcher.hpp"
+#include "duckdb/parser/peg/matcher/not_at_clause_matcher.hpp"
 #include "duckdb/parser/peg/matcher/operator_matcher.hpp"
 #include "duckdb/parser/peg/matcher/optional_matcher.hpp"
 #include "duckdb/parser/peg/matcher/repeat_matcher.hpp"

@@ -1,0 +1,16 @@
+# name: test/sql/parser/at_keyword_identifier_icu.test
+# description: A column named at can be used with AT TIME ZONE
+# group: [parser]
+
+require icu
+
+statement ok
+CREATE TABLE t(at TIMESTAMP)
+
+statement ok
+INSERT INTO t VALUES (TIMESTAMP '2020-01-01 00:00:00')
+
+query I
+SELECT (at AT TIME ZONE 'UTC')::VARCHAR FROM t
+----
+2020-01-01 00:00:00+00
